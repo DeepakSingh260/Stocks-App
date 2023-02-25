@@ -15,9 +15,9 @@ export const StockViewCard=(props:any)=>{
         console.log(e)
     }
     return (
-        <div>
+        <div style={{marginTop:5 }}>
             <Box sx={{ minWidth: 275 }}>
-                <Card variant="outlined">
+                <Card variant="outlined" style={{borderRadius:20}}>
                 <CardContent style={{display:'flex' , flexDirection:'row'}}>
                     <div>
                         
