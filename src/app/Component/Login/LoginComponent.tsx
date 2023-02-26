@@ -5,7 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import { Button } from '@mui/material';
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import {app} from '../Component/firebase'
+import {app} from '../firebase'
 export const LogInComponent =()=>{
 
     const [email , setEmail] = useState("")

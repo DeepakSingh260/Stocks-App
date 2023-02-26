@@ -5,8 +5,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { DisplayGraph } from './graph';
-import { TempGrapgh } from './temp_graph';
+import { DisplayGraph } from '../graph';
+import { TempGrapgh } from '../temp_graph';
 
 export const StockViewCard=(props:any)=>{
     try{
@@ -42,7 +42,6 @@ export const StockViewCard=(props:any)=>{
                     </div>
                     
                 </CardContent>
-
                 </Card>
             </Box>
         

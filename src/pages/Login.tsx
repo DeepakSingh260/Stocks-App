@@ -3,8 +3,8 @@ import { TabPanel,TabList ,TabContext} from '@mui/lab';
 import React from 'react';
 import { Box } from '@mui/system';
 import { useState } from 'react';
-import { SignUpComponent } from '@/app/Component/SignUpComponent';
-import { LogInComponent } from '@/app/Component/LoginComponent';
+import { SignUpComponent } from '@/app/Component/Login/SignUpComponent';
+import { LogInComponent } from '@/app/Component/Login/LoginComponent';
 const LoginPage=()=>{
 
     const [value, setValue] = React.useState('1');

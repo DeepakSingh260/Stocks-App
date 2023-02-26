@@ -1,12 +1,12 @@
 "use client"
 
-import SearchAppBar from "../app/Component/Navbar"
+import SearchAppBar from "../app/Component/Home/Navbar"
 import { useEffect , useState } from "react"
 import axios from "axios"
-import { StockViewCard } from "@/app/Component/stocks-view-card"
-import NewsReviewCard, { NewsView } from "@/app/Component/newsCard"
-import { TopGainer } from "@/app/Component/TopGainer"
-import { TopLooser } from "@/app/Component/TopLoose"
+import { StockViewCard } from "@/app/Component/Home/stocks-view-card"
+import NewsReviewCard, { NewsView } from "@/app/Component/Home/newsCard"
+import { TopGainer } from "@/app/Component/Home/TopGainer"
+import { TopLooser } from "@/app/Component/Home/TopLoose"
 
 const HomePage =()=>{
     const [stockList , setStockList] = useState([])
