@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { DisplayGraph } from '../graph';
-import { TempGrapgh } from '../temp_graph';
+import { TempGrapgh } from './temp_graph';
 
 export const StockViewCard=(props:any)=>{
     try{
