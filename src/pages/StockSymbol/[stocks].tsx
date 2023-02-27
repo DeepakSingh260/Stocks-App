@@ -4,6 +4,8 @@ import { useEffect,useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import {CategoryScale , Chart , registerables} from 'chart.js'
 import { useRouter } from 'next/router';
+import { StockCard } from '@/app/Component/StocksPage/StockCard';
+import { ChakraProvider } from '@chakra-ui/react'
 type stockDataType =    {
     "Date ": string,
     "series ": string,
@@ -33,15 +35,15 @@ const StockPage=()=>{
     useEffect(()=>{
         async function getStockPriceHistoryList(){
             const response = await axios.get(url)
-            console.log(response.data.data)
+            // console.log(response.data.data)
             let tempLt:number[] = []
             let tempLtLabel:string[] = []
             response.data.data.map((item:stockDataType)=>{
                     tempLt.push(parseFloat(item['HIGH '].replace(/,/g, '')))
                     tempLtLabel.push(item['Date '])
             })
-            console.log('data' , tempLt)
-            console.log('label' , tempLtLabel)
+            // console.log('data' , tempLt)
+            // console.log('label' , tempLtLabel)
             setStockPriceHistoryList(tempLt)
             setLabels(tempLtLabel)
         }
@@ -63,10 +65,16 @@ const StockPage=()=>{
     Chart.register(CategoryScale ,...registerables)
     
     return (
+        
         <div style={{width:'50%',minWidth:400 , marginRight:'auto' , marginLeft:'auto'}}>
-            <h1>{pid}</h1>
+            <h1 style={{fontWeight:'bold' , fontSize:22}}>{pid}</h1>
             <Bar data={data} height={200} />
+            <ChakraProvider>
+                <StockCard  item={pid}/>
+            </ChakraProvider>
+
         </div>
+       
     )
 }
 
