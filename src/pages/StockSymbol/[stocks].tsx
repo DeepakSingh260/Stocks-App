@@ -6,6 +6,7 @@ import {CategoryScale , Chart , registerables} from 'chart.js'
 import { useRouter } from 'next/router';
 import { StockCard } from '@/app/Component/StocksPage/StockCard';
 import { ChakraProvider } from '@chakra-ui/react'
+import { StockNews } from '@/app/Component/StocksPage/StockNews';
 type stockDataType =    {
     "Date ": string,
     "series ": string,
@@ -26,11 +27,13 @@ type stockDataType =    {
 const StockPage=()=>{
     const [stockPriceHistoryList ,setStockPriceHistoryList ] = useState<number[]>([])
     const [labelsData ,setLabels ] = useState<string[]>([])
+    const [stockNewsList , setStockNewsList] = useState([])
     const router = useRouter()
     
     const pid = router.query.stocks
     const url = 'http://localhost:3000/stock-history/'+pid?.toString()
-    console.log('router' ,url)
+    const newsUrl = 'http://localhost:3000/stock-news/'+pid?.toString()
+    // console.log('router' ,url)
 
     useEffect(()=>{
         async function getStockPriceHistoryList(){
@@ -42,12 +45,22 @@ const StockPage=()=>{
                     tempLt.push(parseFloat(item['HIGH '].replace(/,/g, '')))
                     tempLtLabel.push(item['Date '])
             })
-            // console.log('data' , tempLt)
+            console.log('data' , tempLt)
             // console.log('label' , tempLtLabel)
             setStockPriceHistoryList(tempLt)
             setLabels(tempLtLabel)
         }
+
+        async function getStockNews(){
+            const response  = await axios.get(newsUrl)
+            console.log(response.data.data.articles)
+            if (response.data!=null){
+                setStockNewsList(response.data.data.articles)
+
+            }
+        }
         getStockPriceHistoryList()
+        getStockNews()
     },[pid])
 
     const data = {
@@ -68,9 +81,15 @@ const StockPage=()=>{
         
         <div style={{width:'50%',minWidth:400 , marginRight:'auto' , marginLeft:'auto'}}>
             <h1 style={{fontWeight:'bold' , fontSize:22}}>{pid}</h1>
-            <Bar data={data} height={200} />
+            <Bar data={data} height={200} style={{border:"1px solid" , padding:15 , borderRadius:10}} />
             <ChakraProvider>
                 <StockCard  item={pid}/>
+                {
+                    stockNewsList.map((news)=>(
+                        <StockNews items={news}/>
+                    ))
+                }
+                
             </ChakraProvider>
 
         </div>

@@ -73,7 +73,7 @@ export const StockCard=(props:any)=>{
         async function getStockDetail(){
             if (props.item!=null){
             const response = await axios.get('http://localhost:3000/watchlist/StockSymbol/'+props.item.toString())
-            console.log('stock',response.data , props.item)
+            // console.log('stock',response.data , props.item)
             if (response.data[0]!=null){
                 setStockDetail(response.data[0])
             }
@@ -82,7 +82,7 @@ export const StockCard=(props:any)=>{
         getStockDetail()
     },[props.item])
     return (
-        <div style={{marginTop:20}}>
+        <div style={{marginTop:20 , marginBottom:20}}>
         <Card>
             <CardHeader>
                 <Heading size='md'>{stockDetail.symbol}</Heading>
