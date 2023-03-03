@@ -10,7 +10,37 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
+import { getAuth } from 'firebase/auth';
+import { app } from '../firebase';
 
+const LogOut=()=>{
+  const user = getAuth(app)
+  const logoutHandler=async()=>{
+    await user.signOut()
+  }
+  return(
+    <>
+    <Button color="inherit" onClick={logoutHandler}>LogOut</Button>
+    </>
+  )
+}
+const LogIn=()=>{
+  return(
+    <>
+    <Button color="inherit"><a href='/Login' style={{color:'white'}}>LogIn</a></Button>
+    </>
+  )
+}
+
+const LogBtn=()=>{
+  const user = getAuth(app)
+
+  if(user.currentUser!=null){
+      return <LogOut/>
+  }else{
+    return <LogIn/>
+  }
+}
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -85,7 +115,8 @@ export default function SearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-          <Button color="inherit" ><a href='/Login' style={{color:'white'}}>Login</a></Button>
+          {/* <Button color="inherit" ><a href='/Login' style={{color:'white'}}>Login</a></Button> */}
+          <LogBtn/>
         </Toolbar>
       </AppBar>
     </Box>
