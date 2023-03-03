@@ -6,6 +6,7 @@ import { Button } from '@mui/material';
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {app} from '../firebase'
+import axios from "axios";
 
 export const SignUpComponent =()=>{
 
@@ -19,8 +20,9 @@ export const SignUpComponent =()=>{
         setPassword(event.target.value)
     }
     const SignBtnHandler =()=>{
-        createUserWithEmailAndPassword(auth , email , password).then((userCred)=>{
+        createUserWithEmailAndPassword(auth , email , password).then(async(userCred)=>{
             const user = userCred.user
+            const reponse = await axios.post('http://localhost:3000/sign-up/' , {uid:user.uid})
         }).catch(e=>alert(e))
     }
     return(

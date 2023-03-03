@@ -1,7 +1,7 @@
 'use client'
 import axios from 'axios';
 import { useEffect,useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 import {CategoryScale , Chart , registerables} from 'chart.js'
 import { useRouter } from 'next/router';
 import { StockCard } from '@/app/Component/StocksPage/StockCard';
@@ -72,6 +72,7 @@ const StockPage=()=>{
                 data:stockPriceHistoryList.slice(0,60).reverse(),
                 barThickness:10,
                 backgroundColor:"rgba(1,166,255,1)",
+                
             }
         ]
     }
@@ -81,7 +82,7 @@ const StockPage=()=>{
         
         <div style={{width:'50%',minWidth:400 , marginRight:'auto' , marginLeft:'auto'}}>
             <h1 style={{fontWeight:'bold' , fontSize:22}}>{pid}</h1>
-            <Bar data={data} height={200} style={{border:"1px solid" , padding:15 , borderRadius:10}} />
+            <Line  data={data} height={200} style={{border:"1px solid" , padding:15 , borderRadius:10}} />
             <ChakraProvider>
                 <StockCard  item={pid}/>
                 {

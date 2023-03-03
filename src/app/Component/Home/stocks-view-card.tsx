@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { DisplayGraph } from '../graph';
@@ -16,8 +17,9 @@ export const StockViewCard=(props:any)=>{
     }
     return (
         <div style={{marginTop:5 }}>
-            <Box sx={{ minWidth: 275 }}>
-                <Card variant="outlined" style={{borderRadius:20}}>
+            <Box sx={{ minWidth: 275 }} >
+                <Card variant="outlined" style={{borderRadius:20}} >
+                <CardActionArea href={"http://localhost:4000/StockSymbol/"+props.item.symbol}>
                 <CardContent style={{display:'flex' , flexDirection:'row'}}>
                     <div>
                         
@@ -30,7 +32,7 @@ export const StockViewCard=(props:any)=>{
                     </div>
                     <div style={{marginLeft:'auto' , marginRight:'auto', }}>
                         {/* <DisplayGraph style={{width:'20%',height:50}} /> */}
-                        <TempGrapgh/>
+                        <TempGrapgh item={props.item} />
                     </div> 
                     <div style={{marginLeft:'auto'  , backgroundColor:'#f3f3f3',padding:10 , borderRadius:5}}>
                     <Typography sx={{  fontSize:15 }} color="text.secondary">
@@ -42,6 +44,7 @@ export const StockViewCard=(props:any)=>{
                     </div>
                     
                 </CardContent>
+                </CardActionArea>
                 </Card>
             </Box>
         

@@ -8,6 +8,7 @@ import NewsReviewCard, { NewsView } from "@/app/Component/Home/newsCard"
 import { TopGainer } from "@/app/Component/Home/TopGainer"
 import { TopLooser } from "@/app/Component/Home/TopLoose"
 
+
 const HomePage =()=>{
     const [stockList , setStockList] = useState([])
     useEffect(()=>{
@@ -28,11 +29,12 @@ const HomePage =()=>{
         <div style={{width:'80%' , marginLeft:'auto' , marginRight:'auto'}}>
         <h1>NSE Stock Listings</h1>
         {stockList.map((item)=>(
-            <StockViewCard item ={item} />
+            <StockViewCard item ={item}  />
         ))}
         <TopGainer/>
         <TopLooser/>
         </div>
+        
         </>
     )
 }
